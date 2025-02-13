@@ -1,9 +1,0 @@
-#include <iosterm>
-using namespace std;
-
-int main() {
-def kwargsAcceptFun(**kwargs):
-    for key, value in kwargs.items():
-        print(f"{key}: {value}")
-
-kwargsAcceptFun(name="Alice", age=30, city="New York", occupation="Engineer")
