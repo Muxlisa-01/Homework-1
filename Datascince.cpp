@@ -1,17 +1,20 @@
 #include <iosterm>
 using namespace std;
 
-int main() {
-def kwargsAcceptFun(**kwargs):
+-src
+    int main() {
+    def kwargsAcceptFun(**kwargs):
     for key, value in kwargs.items():
         print(f"{key}: {value}")
 
 kwargsAcceptFun(name="Alice", age=30, city="New York", occupation="Engineer")
 return 0;
 }
+-Muxlisa.Rajabova
 
-int main() {
-def typeBasedTransformer(**kwargs):
+-src 
+    int main() {
+    def typeBasedTransformer(**kwargs):
     def transform_value(value):
         if isinstance(value, (int, float)):
             return value ** 2;
@@ -45,8 +48,10 @@ result = typeBasedTransformer(
 
 print(result);
 
+-Muxlisa.Rajabova
 
-import time
+-src
+    import time
 
 def decorator_1(func):
     def wrapper(*args, **kwargs):
@@ -58,8 +63,8 @@ def decorator_1(func):
         return result;
     return wrapper;
 
-import random
-from task1 import decorator_1
+import random;
+from task1 import decorator_1;
 
 int main() {
 
@@ -91,4 +96,5 @@ if __name__ == "__main__":
 return 0;
 }
 
+-Muxlisa.Rajabova
 
