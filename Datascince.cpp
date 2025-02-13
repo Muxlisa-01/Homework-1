@@ -32,6 +32,7 @@ def typeBasedTransformer(**kwargs):
             return value
 
     return {key: transform_value(value) for key, value in kwargs.items()}
+}
 
 result = typeBasedTransformer(
     num=4, 
@@ -40,12 +41,10 @@ result = typeBasedTransformer(
     numbers=[1, 2, 3], 
     mapping={"a": 1, "b": 2}, 
     other={"x": 5}
-)
+    )
 
 print(result);
-}
 
-int main() {
 
 import time
 
@@ -62,7 +61,9 @@ def decorator_1(func):
 import random
 from task1 import decorator_1
 
-@decorator_1
+int main() {
+
+decorator_1
 def func():
     print("I am ready to Start");
     result = 0;
@@ -70,7 +71,7 @@ def func():
     for i in range(n):
         result += (i ** 2);
 
-@decorator_1
+decorator_1
 def funx(n=2, m=5):
     print("I am ready to do serious stuff");
     max_val = float('-inf');
@@ -81,10 +82,13 @@ def funx(n=2, m=5):
             max_val = i;
 
 if __name__ == "__main__": 
-    func()
-    funx()
-    func()
-    funx()
-    func()
+    func();
+    funx();
+    func();
+    funx();
+    func();
+
+return 0;
+}
 
 
