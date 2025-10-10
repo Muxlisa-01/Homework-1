@@ -1,5 +1,3 @@
-#ifndef Vehicle_h
-#define Vehicle_h
 #include <iostream>
 using namespace std;
 
@@ -30,15 +28,7 @@ public:
 
 int Vehicle::totalVehicles = 0;
 
-#endif /* Vehicle_h */
 
-
-
-#ifndef Car_h
-#define Car_h
-#include "Vehicle.h"
-#include <iostream>
-using namespace std;
 
 class Car : public Vehicle{
 private:
@@ -59,16 +49,7 @@ public:
 
 };
 
-#endif /* Car_h */
 
-
-
-#ifndef ElectricCar_h
-#define ElectricCar_h
-#include "Car.h"
-#include "Vehicle.h"
-#include <iostream>
-using namespace std;
 
 class ElectricCar: public Car {
 private:
@@ -91,5 +72,4 @@ public:
 
 };
 
-#endif /* ElectricCar_h */
 
