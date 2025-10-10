@@ -1,100 +1,95 @@
-#include <iosterm>
+#ifndef Vehicle_h
+#define Vehicle_h
+#include <iostream>
 using namespace std;
 
--src
-    int main() {
-    def kwargsAcceptFun(**kwargs):
-    for key, value in kwargs.items():
-        print(f"{key}: {value}")
+class Vehicle {
+private:
+    string brand;
+    int year;
+    static int totalVehicles;
+public:
+    Vehicle(string brand, int year){
+        this->brand=brand;
+        this->year=year;
+        totalVehicles++;
+        cout<<"Vehicle constructor is called\n";
+    }
+    void displayVehicle(){
+        cout<<"Brand:"<<brand<<endl;
+        cout<<"Year:"<<year<<endl;
+    }
+    static int getTotal(){
+        return totalVehicles;
+    }
 
-kwargsAcceptFun(name="Alice", age=30, city="New York", occupation="Engineer")
-return 0;
-}
--Muxlisa.Rajabova
+    ~Vehicle(){
+        cout<<"Vehicle is destoyed\n"<<endl;
+    }
+};
 
--src 
-    int main() {
-    def typeBasedTransformer(**kwargs):
-    def transform_value(value):
-        if isinstance(value, (int, float)):
-            return value ** 2;
+int Vehicle::totalVehicles = 0;
 
-        elif isinstance(value, str):
-            return value[::-1];
+#endif /* Vehicle_h */
 
-        elif isinstance(value, bool):
-            return not value;  
 
-        elif isinstance(value, (list, tuple)):
-            return value[::-1];  
 
-        elif isinstance(value, dict):
-            return {v: k for k, v in value.items()} 
+#ifndef Car_h
+#define Car_h
+#include "Vehicle.h"
+#include <iostream>
+using namespace std;
 
-        else:
-            return value
+class Car : public Vehicle{
+private:
+    int doors;
+public:
+    Car(string brand, int year, int doors):Vehicle(brand, year), doors(doors){
+        this->doors=doors;
+        cout<<"Car constructor is called\n";
+    }
+    void displayCar() {
+        displayVehicle();
+        cout<<"Doors:"<<doors<<endl;
+    }
+    
+    ~Car(){
+        cout<<"Car is destroyed\n"<<endl;
+    }
 
-    return {key: transform_value(value) for key, value in kwargs.items()}
-}
+};
 
-result = typeBasedTransformer(
-    num=4, 
-    text="Hello", 
-    flag=True, 
-    numbers=[1, 2, 3], 
-    mapping={"a": 1, "b": 2}, 
-    other={"x": 5}
-    )
+#endif /* Car_h */
 
-print(result);
 
--Muxlisa.Rajabova
 
--src
-    import time
+#ifndef ElectricCar_h
+#define ElectricCar_h
+#include "Car.h"
+#include "Vehicle.h"
+#include <iostream>
+using namespace std;
 
-def decorator_1(func):
-    def wrapper(*args, **kwargs):
-        start_time = time.time();
-        result = func(*args, **kwargs);  
-        end_time = time.time(); 
-        execution_time = end_time - start_time;
-        print(f"{func.__name__} call executed in {execution_time:.4f} sec");
-        return result;
-    return wrapper;
+class ElectricCar: public Car {
+private:
+    int batteryRange;
+public:
+    ElectricCar(string brand, int year, int doors, int battery):Car(brand, year, doors), batteryRange(battery){
+        cout<<"ElectricCar cunstructor is called\n";
+    }
 
-import random;
-from task1 import decorator_1;
+    void dispayElectricCar() {
+        displayVehicle();
+        displayCar();
+        cout<<"Battery Range"<<batteryRange<<"km"<<endl;
+    }
+    
+    ~ElectricCar() {
+        cout<<"Electric car is destroyed\n"<<endl;
+    }
 
-int main() {
 
-decorator_1
-def func():
-    print("I am ready to Start");
-    result = 0;
-    n = random.randint(10, 751);
-    for i in range(n):
-        result += (i ** 2);
+};
 
-decorator_1
-def funx(n=2, m=5):
-    print("I am ready to do serious stuff");
-    max_val = float('-inf');
-    n = random.randint(10, 751);
-    res = [pow(i, 2) for i in range(n)];
-    for i in res:
-        if i > max_val: 
-            max_val = i;
-
-if __name__ == "__main__": 
-    func();
-    funx();
-    func();
-    funx();
-    func();
-
-return 0;
-}
-
--Muxlisa.Rajabova
+#endif /* ElectricCar_h */
 
