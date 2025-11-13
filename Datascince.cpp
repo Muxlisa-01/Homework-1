@@ -1,75 +1,53 @@
+#ifndef Account_h
+#define Account_h
 #include <iostream>
 using namespace std;
 
-class Vehicle {
-private:
-    string brand;
-    int year;
-    static int totalVehicles;
+class Account {
+protected:
+    string ownerName;
+    double balance;
 public:
-    Vehicle(string brand, int year){
-        this->brand=brand;
-        this->year=year;
-        totalVehicles++;
-        cout<<"Vehicle constructor is called\n";
-    }
-    void displayVehicle(){
-        cout<<"Brand:"<<brand<<endl;
-        cout<<"Year:"<<year<<endl;
-    }
-    static int getTotal(){
-        return totalVehicles;
+    Account(string n, double b) : ownerName(n), balance(b) {}
+    
+    double getBalance() {
+        return balance;
     }
 
-    ~Vehicle(){
-        cout<<"Vehicle is destoyed\n"<<endl;
+    virtual void display() {
+        cout<<"Owner:" <<ownerName<<endl;
+        cout<<"Balance:" <<balance<<endl;
     }
-};
 
-int Vehicle::totalVehicles = 0;
-
-
-
-class Car : public Vehicle{
-private:
-    int doors;
-public:
-    Car(string brand, int year, int doors):Vehicle(brand, year), doors(doors){
-        this->doors=doors;
-        cout<<"Car constructor is called\n";
-    }
-    void displayCar() {
-        displayVehicle();
-        cout<<"Doors:"<<doors<<endl;
+    virtual ~Account() {
+        cout<<"Account closed for " <<ownerName<<endl;
     }
     
-    ~Car(){
-        cout<<"Car is destroyed\n"<<endl;
-    }
-
-};
-
-
-
-class ElectricCar: public Car {
-private:
-    int batteryRange;
-public:
-    ElectricCar(string brand, int year, int doors, int battery):Car(brand, year, doors), batteryRange(battery){
-        cout<<"ElectricCar cunstructor is called\n";
-    }
-
-    void dispayElectricCar() {
-        displayVehicle();
-        displayCar();
-        cout<<"Battery Range"<<batteryRange<<"km"<<endl;
+    Account operator+(Account& a) {
+        double newBalance=balance+a.balance;
+        return Account(ownerName, newBalance);
     }
     
-    ~ElectricCar() {
-        cout<<"Electric car is destroyed\n"<<endl;
+    Account operator-(Account a) {
+        double newBalance=balance-a.balance;
+        return Account(ownerName, newBalance);
     }
-
-
+    
+    
+    bool operator==(Account a) {
+        return(balance==a.balance);
+    }
+    
+    
+    friend ostream& operator<< (ostream& out, Account a) {
+        out<<"Owner: "<<a.ownerName<<"Balance: "<<a.balance<<endl;
+        return out;
+    }
+    
+    friend istream& operator>> (istream& in, Account a) {
+        in >> a.ownerName >> a.balance;
+               return in;
+    }
+    
+    
 };
-
-
